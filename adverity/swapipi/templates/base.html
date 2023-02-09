@@ -1,0 +1,94 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="header">
+    <h1 class="name">Star Wars Explorer</h1>
+    <a href="/">Collections</a>
+</div>
+
+
+{% block base %}
+{% endblock %}
+
+</body>
+
+{% block script %}
+{% endblock %}
+
+<style>
+    body {
+        padding: 2%;
+    }
+
+    .header {
+        background-color: #ffff0061;
+        display: flex;
+        padding-left: 25px;
+        border-radius: 15px;
+        align-items: center;
+    }
+
+    .header a {
+        margin-left: 25px;
+        font-weight: bold;
+        font-size: unset;
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    .button {
+        background-color: lightgreen;
+        padding: 15px;
+        border-radius: 5%;
+        display: inline-block;
+        pointer-events: all;
+        cursor: pointer;
+    }
+    .clicked {
+        background-color: lightyellow;
+    }
+
+
+    .loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid black;
+        border-bottom-color: transparent;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+</style>
+</html>

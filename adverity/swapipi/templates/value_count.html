@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+
+{% block base %}
+
+    <hr>
+    {% for header in headers %}
+        <div class="button" onclick="count(this)">{{ header }}</div>
+    {% endfor %}
+    <hr>
+
+    <table>
+        <tr>
+            {% for field in fields %}
+                <th>{{ field }}</th>
+            {% endfor %}
+        </tr>
+        {% for entry in entries %}
+            <tr>
+                {% for field in entry %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <hr>
+{% endblock %}
+
+{% block script %}
+    <script>
+        function count(e) {
+            let field = e.innerHTML;
+            e.classList.toggle('clicked');
+
+            let path = `{{ request.build_absolute_uri }}`;
+            if (path.includes(field)) {
+                path = path.replaceAll("," + field, "");
+                path = path.replaceAll(field, "");
+                window.location.href = path;
+            } else {
+                path.replaceAll("," + field, "");
+                if (window.location.href.includes('fields'))
+                    path += "," + field;
+                else
+                    path += "?fields=" + field;
+
+                window.location.href = path;
+            }
+        }
+
+
+        document.querySelectorAll(".button").forEach(btn => {
+            if (window.location.href.includes(btn.innerHTML))
+                btn.classList.add('clicked');
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,20 @@
+Suggestions / improvements:
+
+
+1. DRF instead of plain Django + on-fly data fetches.
+
+2. If we speak about large amounts of the data, I'd definitely use DB instead of files
+    for storage. Thin spot - people transformation, holding planets data in dictionary
+    while transforming is inefficient RAM usage.
+2.1 Consider using indexes if data is needed to be analyzed/filtered regularly.
+
+3. Celery for queueing fetches/transformations.
+3.1 If celery is not available for some reason, collect first page of each needed
+    resource -> get count -> use ThreadPoolExecutor for the "concurrency".
+
+4. For the bigger amounts of data consider distributed fetching/transforming.
+
+5. For higher loads consider load balancers.
+
+6. Surely, proper structure for the project should be made, split views, models, etc.
+    into the separate modules.

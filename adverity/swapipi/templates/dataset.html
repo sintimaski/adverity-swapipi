@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+
+{% block base %}
+    <table>
+        <tr>
+            {% for hearer in headers %}
+                <th>{{ hearer }}</th>
+            {% endfor %}
+        </tr>
+        {% for entry in entries %}
+            <tr>
+                {% for field in entry %}
+                    <td>{{ field }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+
+    <hr>
+    <a class="button" onclick="loadMore()">Load More</a>
+    <a class="button" onclick="valueCount()">Value count</a>
+    <span class="loader" style="display: none"></span>
+{% endblock %}
+
+{% block script %}
+    <script>
+        function loadMore() {
+            let limit = {{ limit }} +10;
+            window.location.href = `{{ request.path }}?limit=${limit}`;
+        }
+
+        function valueCount() {
+            let url = `{{ request.path }}`.replace("dataset", "value_count");
+            url = url.split("?")[0];
+            window.location.href = url;
+        }
+    </script>
+{% endblock %}

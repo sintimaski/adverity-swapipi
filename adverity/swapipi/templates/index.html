@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block base %}
+
+    <table>
+        <h3 class="name">Collections</h3>
+        <a class="button" onclick="fetchSWAPI()">Fetch</a>
+        <span class="loader" style="display: none"></span>
+        <hr>
+
+
+        {% for entry in entries %}
+            <tr>
+                <td>
+                    <a href="{% url 'dataset' entry.name %}">{{ entry.created_at }}</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
+
+
+{% block script %}
+    <script>
+        function fetchSWAPI() {
+            let url = "{% url 'collect_entries' %}";
+            document.querySelector(".button").style.display = "none";
+            document.querySelector(".loader").style.display = "block";
+            window.location.href = url;
+        }
+    </script>
+{% endblock %}
